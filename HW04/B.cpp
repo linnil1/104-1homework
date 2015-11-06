@@ -14,75 +14,77 @@
 #include <cmath>
 #include <string>
 
+
 // it is for double !!
-int myexit; // for EOF 
-double digIn(){		//foolproof
-	char c[100000]; int ok = 0; double out;
-	while (!ok){
-		ok = 1;
-		if( scanf("%s", c) ==EOF )
-			{myexit=1;return 0;}
-		int dot = 0,mus=0;
-		for (int i = 0; c[i] && ok && dot<=1 && mus<=1; ++i)
-			if (isdigit(c[i]))
+bool digInLine(double *arr,int &n){	// input in a line 
+	puts("input in a line ");
+	char c[10000];
+	if(fgets(c,10000,stdin)==NULL){//not NULL 
+		return 0;
+	}
+	n=0;
+	char *now=strtok(c," \n");// use strtok the separate space
+	while(now!=NULL){//foolproof
+		int dot = 0,mus=0,ok=1;
+		char *st=now;
+		for (; *now  && dot<=1 && ok && mus<=1; ++now)
+			if (isdigit(*now))
 				continue;
-			else if (c[i] == '-')
+			else if (*now == '-')
 				++mus;
-			else if (c[i] == '.')
+			else if (*now == '.')
 				++dot;
 			else
 				ok = 0; 
 		if (dot > 1 || mus >1)
 			ok = 0; 
 		if (!ok)
-			puts("It is not a number !! Please redo it !!");
+			printf("%s is not a number !! i will ignore it !!\n",st);
 		else
-			out = atof(c);
+			arr[n++] = atof(st);
+		now = strtok(NULL," \n");
 	}
-	return out;
+	return 1;
 }
 
 int main(){
 	//input 
-	puts("Enter number. Enter ctrl+z to stop the input");
-	myexit=0;
+	puts("Enter ctrl+z to stop the input");
 	double arr[100];
-	int n=-1;// record the numbers 0f number.
-	while(!myexit){
-		arr[++n]=digIn();
+	int n;
+
+	while(digInLine(arr,n)){
+		//calc standard deviation
+		double sd=0,avg=0;
+		for(int i=0;i<n;++i)
+			avg += arr[i];
+		avg/=n;
+		for(int i=0;i<n;++i)
+			sd+= (arr[i]-avg)*(arr[i]-avg);
+		sd = sqrt(sd/n);
+		
+		// discard two sd away
+		int oldn=n;n=0;
+		for(int i=0;i<oldn;++i)
+			if( std::abs(arr[i]-avg) <= 2*sd )
+				arr[n++]=arr[i];
+				
+		//recalc sd
+		sd=0,avg=0;
+		for(int i=0;i<n;++i)
+			avg += arr[i];
+		avg/=n;
+		for(int i=0;i<n;++i)
+			sd+= (arr[i]-avg)*(arr[i]-avg);
+		sd = sqrt(sd/n);	
+
+		//ouput
+		puts("the number i keep");
+		for(int i=0;i<n;++i)
+			printf("%g ",arr[i]);
+		puts("");
+		printf("new average : %g \nnew standard deviation : %g \n",avg,sd);
 	}
-
-	//calc standard deviation
-	double sd=0,avg=0;
-	for(int i=0;i<n;++i)
-		avg += arr[i];
-	avg/=n;
-	for(int i=0;i<n;++i)
-		sd+= (arr[i]-avg)*(arr[i]-avg);
-	sd = sqrt(sd/n);
-	
-	// discard two sd away
-	int oldn=n;n=0;
-	for(int i=0;i<oldn;++i)
-		if( std::abs(arr[i]-avg) <= 2*sd )
-			arr[n++]=arr[i];
-			
-	//recalc sd
-	sd=0,avg=0;
-	for(int i=0;i<n;++i)
-		avg += arr[i];
-	avg/=n;
-	for(int i=0;i<n;++i)
-		sd+= (arr[i]-avg)*(arr[i]-avg);
-	sd = sqrt(sd/n);	
-
-	//ouput
-	puts("the number i keep");
-	for(int i=0;i<n;++i)
-		printf("%g ",arr[i]);
-	puts("");
-	printf("new average : %g \nnew standard deviation : %g \n",avg,sd);
-	scanf("%*d");
 	return 0;
 
 }

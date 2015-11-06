@@ -17,13 +17,12 @@
 #include <string>
 
 // it is for double !!
-int myexit;//for EOF END
-double digIn(){		//foolproof
-	char c[100000]; int ok = 0; double out;
+bool digIn(double &out){		//foolproof
+	char c[100000]; int ok = 0; 
 	while (!ok){
 		ok = 1;
 		if( scanf("%s", c) ==EOF)
-			{myexit=1;return 0;}
+			return 0;
 		int dot = 0,mus=0;
 		for (int i = 0; c[i] && ok && dot<=1 && mus<=1; ++i)
 			if (isdigit(c[i]))
@@ -41,12 +40,13 @@ double digIn(){		//foolproof
 		else
 			out = atof(c);
 	}
-	return out;
+	return 1;
 }
 
 int main(){
-	myexit=0;
-	puts("\nfinish !! Enter ctrl+z to exit");
-	while(getchar()!=EOF);
+	puts("if finished  Enter ctrl+z to exit");
+	double a;
+	while(digIn(a)){
+	}
 	return 0;
 }
