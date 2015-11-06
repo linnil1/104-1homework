@@ -1,13 +1,12 @@
 //================================================================
 //  PROGRAMMER : 林弘曄
-//  DATE       : 2015// 
-//  FILENAME   : HW01A038.CPP 
-//  DESCRIPTION: 
+//  DATE       : 2015/11/2
+//  FILENAME   : HW04C038.CPP 
+//  DESCRIPTION: use struct to sorting 
 //================================================================
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <string>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -44,9 +43,45 @@ double digIn(){		//foolproof
 	return out;
 }
 
+// build a struct is more easier to use std::sort
+struct part{
+	double num,quan;
+};
+bool comnum(part a,part b){
+	return a.num < b.num;
+}
+bool comquan(part a,part b){
+	return a.quan < b.quan;
+}
+
 int main(){
+	//input
 	myexit=0;
-	puts("\nfinish !! Enter ctrl+z to exit");
-	while(getchar()!=EOF);
+	puts("first enter number and second enter quantity per part");
+	puts("enter EOF to stop input");
+	int n=-1;
+	part arr[1000];
+	while(!myexit){
+		arr[++n].num=digIn();
+		if(myexit)
+			break;
+		arr[n].quan=digIn();
+	}
+	
+	// question a
+	puts("question A:");
+	std::sort(arr,arr+n,comquan);
+	puts("       Part NO.        Quantity");
+	for(int i=n-1;i>=0;--i)
+		printf("%15g %15g\n",arr[i].num,arr[i].quan);
+
+	// question b
+	puts("question B:");
+	std::sort(arr,arr+n,comnum);
+	puts("       Part NO.        Quantity");
+	for(int i=0;i<n;++i)
+		printf("%15g %15g\n",arr[i].num,arr[i].quan);
+
+	scanf("%*d");
 	return 0;
 }
