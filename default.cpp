@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <cmath>
 #include <string>
+#include <ctime>
 
 // it is for double !!
 bool digIn(double &out){		//foolproof
