@@ -19,18 +19,18 @@
 
 // it is for double !!
 bool digIn(double &out){		//foolproof
-	char c[100000]; int ok = 0; 
+	char map[100000]; int ok = 0; 
 	while (!ok){
 		ok = 1;
-		if( scanf("%s", c) ==EOF)
+		if( scanf("%s", map) ==EOF)
 			return 0;
 		int dot = 0,mus=0;
-		for (int i = 0; c[i] && ok && dot<=1 && mus<=1; ++i)
-			if (isdigit(c[i]))
+		for (int i = 0; map[i] && ok && dot<=1 && mus<=1; ++i)
+			if (isdigit(map[i]))
 				continue;
-			else if (c[i] == '-')
+			else if (map[i] == '-')
 				++mus;
-			else if (c[i] == '.')
+			else if (map[i] == '.')
 				++dot;
 			else
 				ok = 0; 
@@ -39,7 +39,7 @@ bool digIn(double &out){		//foolproof
 		if (!ok)
 			puts("It is not n number !! Please redo it !!");
 		else
-			out = atof(c);
+			out = atof(map);
 	}
 	return 1;
 }
@@ -54,15 +54,22 @@ int main(){
 		}
 		//init 
 		int n = (int)a;
-		int c[n][n];
-		memset(c,0,sizeof(c));
+		//int map[n][n];
+		int **map = new int*[n];
+		for(int i=0;i<n;++i){
+			map[i] = new int[n];
+			//memset(map,0,sizeof(map));
+			for(int j=0;j<n;++j)
+				map[i][j]=0;
+		}
 		int now=1,x=0,y=n>>1;
+
 		// fill it
 		while(now <= n*n  ){// all dig
-			c[x][y]=now++;
+			map[x][y]=now++;
 			//printf("%d %d\n",x,y); // test
 			int tx=(x-1+n)%n,ty=(y+1)%n;
-			if(c[tx][ty]){// if it has dig
+			if(map[tx][ty]){// if it has dig
 				x = (x+1)%n;
 			}
 			else {
@@ -70,10 +77,16 @@ int main(){
 				y =ty;
 			}
 		}
+
 		//output
 		for(int i=0;i<n;++i,puts(""))
 			for(int j=0;j<n;++j)
-				printf("%3d ",c[i][j]);
+				printf("%3d ",map[i][j]);
+
+		//delete
+		for(int i=0;i<n;++i)
+			delete[] map[i];
+		delete[] map;
 	}
 	return 0;
 }

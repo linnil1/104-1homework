@@ -28,13 +28,10 @@ void nextgen(char **map,int c,int r){
 			int around=0;//find around grid
 			for(int x=-1;x<=1;++x)
 				for(int y=-1;y<=1;++y)
-					if(x+i<c && x+i >=0 && j+y<r && y+r>=0 && !(x==0 && y==0)&& map[x+i][y+j])
+					if(x+i<c && x+i >=0 && j+y<r && y+j>=0 && !(x==0 && y==0)&& map[x+i][y+j])
 						++around;
-			//cal is live
-			if(map[i][j])
-				tmp[i][j] = (2<=around && around <= 3);
-			else
-				tmp[i][j] = around==3;
+			//cal is live or not
+			tmp[i][j] = map[i][j] ? (2<=around && around <= 3) : around==3;
 		}
 	// copy to map
 	for(int i=0;i<c;++i)
@@ -54,11 +51,10 @@ int main(){
 		//init
 		char **map= new char*[c];
 		for(int i=0;i<c;++i)
-			map[i] = new char[r];
+			map[i] = new char[r+2];// for \0
 
 		// input map
-		scanf("%s",map[0]);
-		for(int i=1;i<c;++i)
+		for(int i=0;i<c;++i)
 			scanf("%s",map[i]);
 
 		// change to 01
@@ -69,7 +65,7 @@ int main(){
 		//start
 		int gen;
 		scanf("%d",&gen);
-		for(int i=0;i<gen;++i){
+		for(int i=1;i<=gen;++i){
 			// output
 			printf("%d generation\n",i);
 			for(int x=0;x<c;++x,puts(""))
