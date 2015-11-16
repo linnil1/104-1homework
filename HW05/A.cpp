@@ -7,6 +7,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <cstdio>
 #include <cstdlib>
@@ -16,6 +17,7 @@
 #include <cmath>
 #include <string>
 #include <ctime>
+using std::cin;using std::cout;
 
 struct cellmap{
 	char **map;
@@ -27,14 +29,14 @@ struct cellmap{
 			map[i] = new char[r+2];// for \0
 	}
 
-	bool input(){
-		if(scanf("%d%d",&c,&r)==EOF)
+	bool input(std::istream &in=cin){
+		if(!(in >> c >> r) || c<=0 || r<=0)
 			return 0; // stop
 		init();
 
 		// input map
 		for(int i=0;i<c;++i)
-			scanf("%s",map[i]);
+			in >> map[i];
 
 		// change to 01
 		for(int i=0;i<c;++i)
@@ -83,10 +85,15 @@ struct cellmap{
 int main(){
 	puts("use 0 to exit");
 	cellmap map;
-	while(map.input()){
+	std::fstream f("in",std::ios::in);
+	if(!f.is_open()){
+		puts("input File is dead");
+		return 0;
+	}
+	while(map.input(f)){
 		//start
 		int gen;
-		scanf("%d",&gen);
+		f >> gen;
 		for(int i=1;i<=gen;++i){
 			// output
 			printf("%d generation\n",i);
@@ -94,6 +101,7 @@ int main(){
 			map.nextgen();
 		}
 		map.end();
+		scanf("%*c");
 	}
 	return 0;
 }
