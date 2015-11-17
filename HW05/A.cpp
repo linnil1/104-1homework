@@ -73,11 +73,13 @@ struct cellmap{
 			}
 
 		// copy to map
-		for(int i=0;i<c;++i)
+		/*for(int i=0;i<c;++i)
 			for(int j=0;j<r;++j)
 				map[i][j] = tmp.map[i][j];
-
-		tmp.end();
+		*/
+		// this way is quicker
+		this->end();
+		map = tmp.map;
 	}
 
 };
