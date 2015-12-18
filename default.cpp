@@ -16,6 +16,11 @@
 #include <cmath>
 #include <string>
 #include <ctime>
+#include <fstream>
+#include <vector>
+#include <assert.h>
+#define VI std::vector<int>
+using std::string;
 
 // it is for double !!
 bool digIn(double &out){		//foolproof
