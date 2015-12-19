@@ -71,8 +71,10 @@ int main(){
 	//binary search
 	fin.close();
 	fin.open("words.txt",std::ios_base::in);
+	// nlogn 
 	std::sort(sto.begin(),sto.end(),stocmp);
 	string maxsin;
+	//n logn 
 	for(int i=0;i<sto.size();++i){
 		fin.seekg(sto[i]);
 		getline(fin,sin);
