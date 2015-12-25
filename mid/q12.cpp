@@ -12,8 +12,8 @@ void mat_in(int **&a,int m,int n){
 
 void mat_del(int **&a,int m){
 	for(int i=0;i<m;++i)
-		delete a[i];
-	delete a;
+		delete[] a[i];
+	delete[] a;
 }
 
 int main(){
