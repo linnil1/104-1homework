@@ -37,7 +37,8 @@ class Fractions{
 		//init
 		Fractions(){num=denum=1;};
 		Fractions(int _num,int _denum){
-			assert(_denum);
+			if(!_denum)
+				throw 0;
 			num=_num;denum=_denum;
 			reduce();
 		};
@@ -71,17 +72,27 @@ int main(){
 	puts("puts ctrl+z to end ");
 	puts("inputs like this: 1/3 + 2/5");
 	Fractions a,b,ans;
-	while(a.in()){
-		char ch[10];scanf("%s",ch);
-		b.in();
-		switch(ch[0]){
-			case '+':ans = a+b;break;
-			case '-':ans = a-b;break;
-			case '*':ans = a*b;break;
-			case '/':ans = a/b;break;
+	while(1){
+		try{
+			if(!a.in())
+				break;
+			char ch[10];scanf("%s",ch);
+			if(!b.in())
+				break;
+			switch(ch[0]){
+				case '+':ans = a+b;break;
+				case '-':ans = a-b;break;
+				case '*':ans = a*b;break;
+				case '/':ans = a/b;break;
+			}
+			ans.print();
+			puts("");
 		}
-		ans.print();
-		puts("");
+		catch(int){
+			while(getchar()!='\n');
+			puts("no answer");
+		}
+
 	}
 	return 0;
 }
