@@ -64,6 +64,7 @@ class Fractions{
 			if(c!='/')
 				throw 0;
 			a = Fractions(n,den);
+			return in;
 		}
 		friend ostream& operator << (ostream &out,Fractions &a){
 			if(a.num){
@@ -73,6 +74,7 @@ class Fractions{
 			}
 			else
 				out << "0";
+			return out;
 		}
 };
 
@@ -101,7 +103,8 @@ int main(){
 		}
 		catch(int){
 //			while(getchar()!='\n');
-			cin.clear();
+//			cin.clear();
+			cin.ignore(0x7fffffff,'\n');
 			puts("no answer");
 		}
 		catch(istream::failure){
