@@ -21,7 +21,10 @@
 #include <assert.h>
 #define VI std::vector<int>
 using std::string;
-
+using std::cin;
+using std::cout;
+using std::istream;
+using std::ostream;
 
 int gcd(int a,int b){return b?gcd(b,a%b):a;}
 
@@ -54,43 +57,55 @@ class Fractions{
 			return Fractions(num*b.denum,denum*b.num); }
 
 		//io
-		bool in(){
+		friend istream& operator >> (istream &in,Fractions &a){
 			int n,den;
-			if(scanf("%d/%d",&n,&den)==EOF)
-				return 0;
-			*this = Fractions(n,den);
-			return 1;
+			char c;
+			in>>n>>c>>den;
+			if(c!='/')
+				throw 0;
+			a = Fractions(n,den);
 		}
-		void print(){
-			if(num)
-				printf("%d/%d",num,denum);
+		friend ostream& operator << (ostream &out,Fractions &a){
+			if(a.num){
+				out << a.num ;
+				if(a.denum!=1)
+					out << "/" << a.denum ;
+			}
 			else
-				putchar('0');
+				out << "0";
 		}
 };
+
 int main(){
 	puts("puts ctrl+z to end ");
 	puts("inputs like this: 1/3 + 2/5");
 	Fractions a,b,ans;
 	while(1){
 		try{
-			if(!a.in())
-				break;
-			char ch[10];scanf("%s",ch);
-			if(!b.in())
-				break;
-			switch(ch[0]){
+			cin>>a;
+			cin.exceptions(istream::failbit | istream::badbit);
+			//get +-*
+			char c;
+			do
+				cin >> c;
+			while(c!='+' && c!='-'&& c!='*'&& c!='/');
+			cin>>b;
+			cin.exceptions(istream::failbit | istream::badbit);
+			switch(c){
 				case '+':ans = a+b;break;
 				case '-':ans = a-b;break;
 				case '*':ans = a*b;break;
 				case '/':ans = a/b;break;
 			}
-			ans.print();
-			puts("");
+			cout << ans <<"\n";
 		}
 		catch(int){
-			while(getchar()!='\n');
+//			while(getchar()!='\n');
+			cin.clear();
 			puts("no answer");
+		}
+		catch(istream::failure){
+			break;
 		}
 
 	}
