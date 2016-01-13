@@ -1,0 +1,11 @@
+Computer programming (often shortened to programming or
+coding) is the process of writing, testing, debugging /
+troubleshooting, and maintaining the source code of computer
+programs. This source code is written in a programming language.
+The code may be a modification of an existing source or
+something completely new. The purpose of programming is to
+create a program that exhibits a certain desired behavior
+(customization). The process of writing source code often
+requires expertise in many different subjects, including
+knowledge of the application domain, specialized algorithms and
+formal logic.
