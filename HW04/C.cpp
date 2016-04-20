@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : 林弘曄
 //  DATE       : 2015/11/2
 //  FILENAME   : HW04C038.CPP 
 //  DESCRIPTION: use struct to sorting 

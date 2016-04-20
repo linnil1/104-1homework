@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : 林弘曄
 //  DATE       : 2015/11/16
 //  FILENAME   : HW05A038.CPP 
 //  DESCRIPTION: basic cell game 

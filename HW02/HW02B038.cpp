@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : 林弘曄
 //  DATE       : 2015/10/1 
 //  FILENAME   : HW01B038.CPP 
 //  DESCRIPTION: Display the temperature in a freezer

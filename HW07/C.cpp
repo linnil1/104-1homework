@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : 林弘曄
 //  DATE       : 2015/12/18
 //  FILENAME   : HW07C038.cpp
 //  DESCRIPTION: solve sudoku

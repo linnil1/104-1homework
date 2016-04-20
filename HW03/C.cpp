@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : ¿¿¿
 //  DATE       : 2015/10/19
 //  FILENAME   : HW03C038.CPP 
 //  DESCRIPTION: As question says

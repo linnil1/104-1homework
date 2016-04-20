@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : ¿¿¿ 
 //  DATE       : 2015/9/29 
 //  FILENAME   : HW01Ab04611017.CPP 
 //  DESCRIPTION: Display a xx.bmp picture on stdoutput screen

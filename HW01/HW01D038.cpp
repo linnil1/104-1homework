@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : ªL¥°¾ç 
 //  DATE       : 2015/9/24 
 //  FILENAME   : HW01Db04611017.CPP 
 //  DESCRIPTION: calculate the answer by using the formula

@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : 林弘曄
 //  DATE       : 2015/11/4 
 //  FILENAME   : HW04A038.CPP 
 //  DESCRIPTION: find perfect number

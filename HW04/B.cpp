@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : 林弘曄
 //  DATE       : 2015/11/2 
 //  FILENAME   : HW04B038.CPP 
 //  DESCRIPTION: calc standard deviation as question described 

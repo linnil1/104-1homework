@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : ªL¥°¾ç 
 //  DATE       : 2015/9/24 
 //  FILENAME   : HW01Bb04611017.CPP 
 //  DESCRIPTION: Give a b c and can the averge of the three. 

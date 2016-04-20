@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : 林弘曄
 //  DATE       : 2015/12/18
 //  FILENAME   : HW07A038.CPP 
 //  DESCRIPTION: as question described 

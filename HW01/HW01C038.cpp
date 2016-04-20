@@ -1,5 +1,4 @@
 //================================================================
-//  PROGRAMMER : ªL¥°¾ç 
 //  DATE       : 2015/9/24 
 //  FILENAME   : HW01Cb04611017.CPP 
 //  DESCRIPTION: Fine the speed  
